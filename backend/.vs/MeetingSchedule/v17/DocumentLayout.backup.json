@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\proyectos\\.NET Core\\MeetingSchedule\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|d:\\proyectos\\.net core\\meetingschedule\\infrastructure\\migrations\\20250511225107_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\migrations\\20250511225107_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|d:\\proyectos\\.net core\\meetingschedule\\infrastructure\\data\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|d:\\proyectos\\.net core\\meetingschedule\\infrastructure\\data\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D02E99-CC2A-4936-BABF-0CE91CEDBCF0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72A06A5A-EB01-4CE9-AD02-FA8F31982B83}|API\\API.csproj|d:\\proyectos\\.net core\\meetingschedule\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{72A06A5A-EB01-4CE9-AD02-FA8F31982B83}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72A06A5A-EB01-4CE9-AD02-FA8F31982B83}|API\\API.csproj|d:\\proyectos\\.net core\\meetingschedule\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72A06A5A-EB01-4CE9-AD02-FA8F31982B83}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20250511225107_InitialCreate.cs",
+              "DocumentMoniker": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Migrations\\20250511225107_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20250511225107_InitialCreate.cs",
+              "ToolTip": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Migrations\\20250511225107_InitialCreate.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\20250511225107_InitialCreate.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T22:51:57.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DesignTimeDbContextFactory.cs",
+              "DocumentMoniker": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Data\\DesignTimeDbContextFactory.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\DesignTimeDbContextFactory.cs",
+              "ToolTip": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Data\\DesignTimeDbContextFactory.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\DesignTimeDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T22:44:48.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Context.cs",
+              "DocumentMoniker": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Data\\Context.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Context.cs",
+              "ToolTip": "D:\\proyectos\\.NET Core\\MeetingSchedule\\Infrastructure\\Data\\Context.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Context.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAmwDcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T22:41:02.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\proyectos\\.NET Core\\MeetingSchedule\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "D:\\proyectos\\.NET Core\\MeetingSchedule\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAowFAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T22:40:38.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\proyectos\\.NET Core\\MeetingSchedule\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "D:\\proyectos\\.NET Core\\MeetingSchedule\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAkwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-11T22:39:48.629Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 13,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
