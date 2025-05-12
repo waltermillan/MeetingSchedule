@@ -18,7 +18,7 @@ namespace API.Features.ContactsTag.Delete
             if (contactTag == null) return false;
 
             _unitOfWork.ContactsTag.Remove(contactTag);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return true;
         }

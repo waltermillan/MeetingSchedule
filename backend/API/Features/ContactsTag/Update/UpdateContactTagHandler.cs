@@ -22,7 +22,7 @@ namespace API.Features.Contacts.Update
             contactTag.TagId = request.TagId;
 
             _unitOfWork.ContactsTag.Update(contactTag);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return true;
         }

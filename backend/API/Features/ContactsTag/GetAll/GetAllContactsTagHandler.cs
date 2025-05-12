@@ -1,21 +1,23 @@
-﻿using Core.Entities;
+﻿using API.DTOs;
+using API.Services;
+using Core.Entities;
 using Core.Interfaces;
 using MediatR;
 
 namespace API.Features.ContactsTag.GetAll
 {
-    public class GetAllContactsTagHandler : IRequestHandler<GetAllContactsTagQuery, IEnumerable<ContactTag>>
+    public class GetAllContactsTagHandler : IRequestHandler<GetAllContactsTagQuery, IEnumerable<ContactTagDTO>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ContactTagService _contactTagDTOService;
 
-        public GetAllContactsTagHandler(IUnitOfWork unitOfWork)
+        public GetAllContactsTagHandler(ContactTagService contactTagDTOService)
         {
-            _unitOfWork = unitOfWork;
+            _contactTagDTOService = contactTagDTOService;
         }
 
-        public async Task<IEnumerable<ContactTag>> Handle(GetAllContactsTagQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ContactTagDTO>> Handle(GetAllContactsTagQuery request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.ContactsTag.GetAllAsync();
+            return await _contactTagDTOService.GetAllAsync();
         }
     }
 }

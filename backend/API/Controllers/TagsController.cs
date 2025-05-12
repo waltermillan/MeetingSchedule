@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-
     public class TagsController : BaseApiController
     {
         private readonly IMediator _mediator;
@@ -21,37 +20,72 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTagCommand command)
         {
-            var tagId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = tagId }, tagId);
+            try
+            {
+                var tagId = await _mediator.Send(command);
+                return CreatedAtAction(nameof(GetById), new { id = tagId }, tagId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while creating the tag.", Detailed = ex.Message });
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var tags = await _mediator.Send(new GetAllTagsQuery());
-            return Ok(tags);
+            try
+            {
+                var tags = await _mediator.Send(new GetAllTagsQuery());
+                return Ok(tags);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while retrieving all tags.", Detailed = ex.Message });
+            }
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var tag = await _mediator.Send(new GetTagByIdQuery(id));
-            return tag is null ? NotFound() : Ok(tag);
+            try
+            {
+                var tag = await _mediator.Send(new GetTagByIdQuery(id));
+                return tag is null ? NotFound() : Ok(tag);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while retrieving the tag.", Detailed = ex.Message });
+            }
         }
 
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTagCommand command)
         {
-            if (id != command.Id) return BadRequest("Mismatched ID");
-            var updated = await _mediator.Send(command);
-            return updated ? NoContent() : NotFound();
+            try
+            {
+                if (id != command.Id) return BadRequest("Mismatched ID");
+                var updated = await _mediator.Send(command);
+                return updated ? NoContent() : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating the tag.", Detailed = ex.Message });
+            }
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deleted = await _mediator.Send(new DeleteTagCommand(id));
-            return deleted ? NoContent() : NotFound();
+            try
+            {
+                var deleted = await _mediator.Send(new DeleteTagCommand(id));
+                return deleted ? NoContent() : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while deleting the tag.", Detailed = ex.Message });
+            }
         }
     }
 }

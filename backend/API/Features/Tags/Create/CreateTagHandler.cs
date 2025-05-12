@@ -30,7 +30,7 @@ namespace API.Features.Tags.CreateTag
             };
 
             _unitOfWork.Tags.Add(tag);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return tag.Id;
         }

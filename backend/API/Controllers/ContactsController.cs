@@ -20,38 +20,72 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateContactCommand command)
         {
-            var contactId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = contactId }, contactId);
+            try
+            {
+                var contactId = await _mediator.Send(command);
+                return CreatedAtAction(nameof(GetById), new { id = contactId }, contactId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while creating the contact.", Detailed = ex.Message });
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var contacts = await _mediator.Send(new GetAllContactsQuery());
-            return Ok(contacts);
+            try
+            {
+                var contacts = await _mediator.Send(new GetAllContactsQuery());
+                return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while retrieving all contacts.", Detailed = ex.Message });
+            }
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var contact = await _mediator.Send(new GetContactByIdQuery(id));
-            if (contact is null) return NotFound();
-            return Ok(contact);
+            try
+            {
+                var contact = await _mediator.Send(new GetContactByIdQuery(id));
+                return contact is null ? NotFound() : Ok(contact);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while retrieving the contact.", Detailed = ex.Message });
+            }
         }
 
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateContactCommand command)
         {
-            if (id != command.Id) return BadRequest("Mismatched ID");
-            var updated = await _mediator.Send(command);
-            return updated ? NoContent() : NotFound();
+            try
+            {
+                if (id != command.Id) return BadRequest("Mismatched ID");
+                var updated = await _mediator.Send(command);
+                return updated ? NoContent() : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating the contact.", Detailed = ex.Message });
+            }
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deleted = await _mediator.Send(new DeleteContactCommand(id));
-            return deleted ? NoContent() : NotFound();
+            try
+            {
+                var deleted = await _mediator.Send(new DeleteContactCommand(id));
+                return deleted ? NoContent() : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while deleting the contact.", Detailed = ex.Message });
+            }
         }
     }
 }

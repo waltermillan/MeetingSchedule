@@ -18,7 +18,7 @@ public class DeleteTagHandler : IRequestHandler<DeleteTagCommand, bool>
         if (tag == null) return false;
 
         _unitOfWork.Tags.Remove(tag);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(cancellationToken);
 
         return true;
     }

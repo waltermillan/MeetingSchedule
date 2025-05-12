@@ -34,7 +34,7 @@ namespace API.Features.Contacts.CreateContact
             };
 
             _unitOfWork.Contacts.Add(contact);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return contact.Id;
         }

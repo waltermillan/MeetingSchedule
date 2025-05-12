@@ -1,21 +1,23 @@
 ﻿using Core.Interfaces;
 using MediatR;
 using Core.Entities;
+using API.DTOs;
+using API.Services;
 
 namespace API.Features.ContactsTag.GetById
 {
-    public class GetContactTagByIdHandler : IRequestHandler<GetContactTagByIdQuery, ContactTag?>
+    public class GetContactTagByIdHandler : IRequestHandler<GetContactTagByIdQuery, ContactTagDTO?>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ContactTagService _contactTagDTOService;
 
-        public GetContactTagByIdHandler(IUnitOfWork unitOfWork)
+        public GetContactTagByIdHandler(ContactTagService contactTagDTOService)
         {
-            _unitOfWork = unitOfWork;
+            _contactTagDTOService = contactTagDTOService;
         }
 
-        public async Task<ContactTag?> Handle(GetContactTagByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ContactTagDTO?> Handle(GetContactTagByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.ContactsTag.GetByIdAsync(request.Id);
+            return await _contactTagDTOService.GetByIdAsync(request.Id);
         }
     }
 }

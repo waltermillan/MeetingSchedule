@@ -21,7 +21,7 @@ public class UpdateTagHandler : IRequestHandler<UpdateTagCommand, bool>
         tag.Color = request.Color;
 
         _unitOfWork.Tags.Update(tag);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(cancellationToken);
 
         return true;
     }

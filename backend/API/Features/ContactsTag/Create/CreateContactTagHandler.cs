@@ -24,7 +24,7 @@ namespace API.Features.ContactsTag.CreateContactTag
             };
 
             _unitOfWork.ContactsTag.Add(contactTag);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return contactTag.Id;
         }

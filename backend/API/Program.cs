@@ -46,6 +46,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Uses custom exception middleware
+app.UseHandlerException();
+
 app.UseIpRateLimiting();
 
 app.UseStatusCodePagesWithReExecute("/errors/{0}");

@@ -9,6 +9,6 @@ namespace Core.Interfaces
         IContactTagRepository ContactsTag { get; }
 
         void Dispose();
-        Task<int> SaveAsync();
+        Task<int> SaveAsync(CancellationToken cancellationToken);
     }
 }

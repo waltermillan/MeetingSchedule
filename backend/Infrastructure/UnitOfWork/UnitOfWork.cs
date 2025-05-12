@@ -50,9 +50,9 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public async Task<int> SaveAsync()
+    public async Task<int> SaveAsync(CancellationToken cancellationToken)
     {
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 
     public void Dispose()

@@ -24,7 +24,7 @@ namespace API.Features.Contacts.Update
             contact.UpdatedAt = DateTime.UtcNow;
 
             _unitOfWork.Contacts.Update(contact);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return true;
         }

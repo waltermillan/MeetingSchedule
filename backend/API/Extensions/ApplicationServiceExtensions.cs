@@ -1,6 +1,9 @@
-﻿using AspNetCoreRateLimit;
+﻿using API.Middlewares;
+using API.Services;
+using AspNetCoreRateLimit;
 using Core.Interfaces;
 using Infrastructure.Helpers;
+using Infrastructure.Logging;
 using Infrastructure.Repositories;
 using Infrastructure.UnitOfWork;
 using System.Reflection;
@@ -30,6 +33,8 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITagRepository, TagRepository>();
         services.AddScoped<IContactTagRepository, ContactTagRepository>();
         services.AddScoped<IPasswordHasher, BcryptPasswordHasher>();
+        services.AddScoped<ContactTagService>();
+        services.AddSingleton<ILoggingService, SerilogLoggingService>();
     }
 
     public static void ConfigureRateLimiting(this IServiceCollection services, IConfiguration configuration)
@@ -60,5 +65,10 @@ public static class ApplicationServiceExtensions
                 }
             };
         });
+    }
+
+    public static IApplicationBuilder UseHandlerException(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<ExceptionHandlingMiddleware>();
     }
 }

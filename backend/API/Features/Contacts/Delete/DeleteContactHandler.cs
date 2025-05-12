@@ -18,7 +18,7 @@ namespace API.Features.Contacts.Delete
             if (contact == null) return false;
 
             _unitOfWork.Contacts.Remove(contact);
-            await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             return true;
         }
