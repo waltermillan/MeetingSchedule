@@ -15,7 +15,9 @@ public class UpdateTagHandler : IRequestHandler<UpdateTagCommand, bool>
     public async Task<bool> Handle(UpdateTagCommand request, CancellationToken cancellationToken)
     {
         var tag = await _unitOfWork.Tags.GetByIdAsync(request.Id);
-        if (tag == null) return false;
+        
+        if (tag is null) 
+            return false;
 
         tag.Name = request.Name;
         tag.Color = request.Color;

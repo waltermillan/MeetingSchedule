@@ -32,8 +32,10 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IContactRepository, ContactRepository>();
         services.AddScoped<ITagRepository, TagRepository>();
         services.AddScoped<IContactTagRepository, ContactTagRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPasswordHasher, BcryptPasswordHasher>();
         services.AddScoped<ContactTagService>();
+        services.AddScoped<UserService>();
         services.AddSingleton<ILoggingService, SerilogLoggingService>();
     }
 

@@ -11,6 +11,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IContactRepository _contacts;
     private ITagRepository _tags;
     private IContactTagRepository _contactsTag;
+    public IUserRepository _users;
 
     public UnitOfWork(Context context)
     {
@@ -47,6 +48,16 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _contactsTag = new ContactTagRepository(_context);
 
             return _contactsTag;
+        }
+    }
+
+    public IUserRepository Users
+    {
+        get
+        {
+            if (_users is null)
+                _users = new UserRepository(_context);
+            return _users;
         }
     }
 

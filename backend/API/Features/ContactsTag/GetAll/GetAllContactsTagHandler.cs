@@ -6,18 +6,18 @@ using MediatR;
 
 namespace API.Features.ContactsTag.GetAll
 {
-    public class GetAllContactsTagHandler : IRequestHandler<GetAllContactsTagQuery, IEnumerable<ContactTagDTO>>
+    public class GetAllContactsTagHandler : IRequestHandler<GetAllContactsTagQuery, IEnumerable<ContactTagDto>>
     {
-        private readonly ContactTagService _contactTagDTOService;
+        private readonly ContactTagService _contactTagDtoService;
 
-        public GetAllContactsTagHandler(ContactTagService contactTagDTOService)
+        public GetAllContactsTagHandler(ContactTagService contactTagDtoService)
         {
-            _contactTagDTOService = contactTagDTOService;
+            _contactTagDtoService = contactTagDtoService;
         }
 
-        public async Task<IEnumerable<ContactTagDTO>> Handle(GetAllContactsTagQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ContactTagDto>> Handle(GetAllContactsTagQuery request, CancellationToken cancellationToken)
         {
-            return await _contactTagDTOService.GetAllAsync();
+            return await _contactTagDtoService.GetAllAsync();
         }
     }
 }

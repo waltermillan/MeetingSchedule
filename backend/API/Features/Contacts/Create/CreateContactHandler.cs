@@ -2,11 +2,16 @@
 using Core.Entities;
 using Core.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/*
+ 
+ Mediator: This pattern decouples the sending of a request from its handling, promoting a clean and organized architecture.
+
+    CreateContactCommand: represents a Request.
+
+    CreateContactHandler: is the handler that receives and handles that request.
+
+ */
 
 namespace API.Features.Contacts.CreateContact
 {

@@ -15,7 +15,9 @@ namespace API.Features.Contacts.Delete
         public async Task<bool> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
             var contact = await _unitOfWork.Contacts.GetByIdAsync(request.Id);
-            if (contact == null) return false;
+
+            if (contact is null) 
+                return false;
 
             _unitOfWork.Contacts.Remove(contact);
             await _unitOfWork.SaveAsync(cancellationToken);

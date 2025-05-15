@@ -16,7 +16,7 @@ public class ContactTagService
         _tagRepository = tagRepository;
     }
 
-    public async Task<ContactTagDTO> GetByIdAsync(Guid contactTagId)
+    public async Task<ContactTagDto> GetByIdAsync(Guid contactTagId)
     {
         var contactTag = await _contactTagRepository.GetByIdAsync(contactTagId);
         var contact = await _contactRepository.GetByIdAsync(contactTag.ContactId);
@@ -25,7 +25,7 @@ public class ContactTagService
         if (contact is null)
             return null;
 
-        var contactTagDTO = new ContactTagDTO
+        var contactTagDto = new ContactTagDto
         {
             Id = contactTag.Id,
             ContactId = contact.Id,
@@ -34,23 +34,23 @@ public class ContactTagService
             Tag = tag.Name
         };
 
-        return contactTagDTO;
+        return contactTagDto;
     }
 
-    public async Task<IEnumerable<ContactTagDTO>> GetAllAsync()
+    public async Task<IEnumerable<ContactTagDto>> GetAllAsync()
     {
         var contactTags = await _contactTagRepository.GetAllAsync();
 
         if (contactTags is null || !contactTags.Any())
             return [];
 
-        var contactTagsDTO = new List<ContactTagDTO>();
+        var contactTagsDTO = new List<ContactTagDto>();
 
         foreach (var item in contactTags)
         {
             var contact = await _contactRepository.GetByIdAsync(item.ContactId);
             var tag = await _tagRepository.GetByIdAsync(item.TagId);
-            var contactTagDTO = new ContactTagDTO
+            var contactTagDTO = new ContactTagDto
             {
                 Id = item.Id,
                 ContactId = contact.Id,

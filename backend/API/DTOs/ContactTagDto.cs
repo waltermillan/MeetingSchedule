@@ -1,6 +1,6 @@
 ﻿namespace API.DTOs
 {
-    public class ContactTagDTO
+    public class ContactTagDto
     {
         public Guid Id { get; set; }                //Table: ContactTag | Field: Id
         public Guid ContactId { get; set; }         //Table: ContactTag | Field: ContactId

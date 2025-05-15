@@ -15,7 +15,9 @@ namespace API.Features.Contacts.Update
         public async Task<bool> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = await _unitOfWork.Contacts.GetByIdAsync(request.Id);
-            if (contact == null) return false;
+
+            if (contact is null) 
+                return false;
 
             contact.Name = request.Name;
             contact.Email = request.Email;

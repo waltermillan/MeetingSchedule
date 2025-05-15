@@ -3,6 +3,7 @@ using API.Features.ContactsTag.Delete;
 using API.Features.ContactsTag.GetAll;
 using API.Features.ContactsTag.GetById;
 using API.Features.ContactsTag.Update;
+using API.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,12 +23,18 @@ public class ContactTagsController : BaseApiController
     {
         try
         {
-            var id = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id }, id);
+            var contactTagId = await _mediator.Send(command);
+
+            var data = new
+            {
+                contactTagId
+            };
+
+            return Ok(ApiResponseFactory.Success<object>(data, "Contact-Tag Created Successfully."));
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "An error occurred while creating the contact tag.", Detailed = ex.Message });
+            return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while creating the contact-tag. Message: {0}", ex.Message)));
         }
     }
 
@@ -41,7 +48,7 @@ public class ContactTagsController : BaseApiController
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "An error occurred while retrieving all contact tags.", Detailed = ex.Message });
+            return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving all contact-tags. Message: {0}", ex.Message)));
         }
     }
 
@@ -50,12 +57,12 @@ public class ContactTagsController : BaseApiController
     {
         try
         {
-            var result = await _mediator.Send(new GetContactTagByIdQuery(id));
+            var result = await _mediator.Send(new GetByIdContactTagQuery(id));
             return result is null ? NotFound() : Ok(result);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "An error occurred while retrieving the contact tag.", Detailed = ex.Message });
+            return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving the contact tag. Message: {0}", ex.Message)));
         }
     }
 
@@ -66,11 +73,17 @@ public class ContactTagsController : BaseApiController
         {
             if (id != command.Id) return BadRequest("Mismatched ID");
             var updated = await _mediator.Send(command);
-            return updated ? NoContent() : NotFound();
+
+            var data = new
+            {
+                updated
+            };
+
+            return Ok(ApiResponseFactory.Success<object>(data, "Contact-Tag Updated Successfully."));
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "An error occurred while updating the contact tag.", Detailed = ex.Message });
+            return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while updating the contact tag. Message: {0}", ex.Message)));
         }
     }
 
@@ -80,11 +93,17 @@ public class ContactTagsController : BaseApiController
         try
         {
             var deleted = await _mediator.Send(new DeleteContactTagCommand(id));
-            return deleted ? NoContent() : NotFound();
+
+            var data = new
+            {
+                deleted
+            };
+
+            return Ok(ApiResponseFactory.Success<object>(data, "Contact-Tag Deleted Successfully."));
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "An error occurred while deleting the contact tag.", Detailed = ex.Message });
+            return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while deleting the contact tag. Message: {0}", ex.Message)));
         }
     }
 }

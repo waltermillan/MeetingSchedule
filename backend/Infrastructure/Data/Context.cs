@@ -12,6 +12,7 @@ namespace Infrastructure.Data
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<ContactTag> ContactsTag { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +52,15 @@ namespace Infrastructure.Data
                       .WithMany()
                       .HasForeignKey(e => e.TagId)
                       .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // User
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.UserName).IsRequired();
+                entity.Property(e => e.Password).IsRequired();
             });
         }
     }

@@ -1,7 +1,7 @@
 USE [MeetingScheduleDb]
 GO
 
-/****** Object:  Table [dbo].[contact_tags]    Script Date: 12/5/2025 01:33:45 ******/
+/****** Object:  Table [dbo].[contact_tags]    Script Date: 16/5/2025 01:11:21 ******/
 SET ANSI_NULLS ON
 GO
 

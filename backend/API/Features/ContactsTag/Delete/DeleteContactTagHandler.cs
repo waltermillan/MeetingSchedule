@@ -15,7 +15,9 @@ namespace API.Features.ContactsTag.Delete
         public async Task<bool> Handle(DeleteContactTagCommand request, CancellationToken cancellationToken)
         {
             var contactTag = await _unitOfWork.ContactsTag.GetByIdAsync(request.Id);
-            if (contactTag == null) return false;
+            
+            if (contactTag is null) 
+                return false;
 
             _unitOfWork.ContactsTag.Remove(contactTag);
             await _unitOfWork.SaveAsync(cancellationToken);

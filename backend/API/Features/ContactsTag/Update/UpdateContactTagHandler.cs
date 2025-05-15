@@ -16,7 +16,9 @@ namespace API.Features.Contacts.Update
         public async Task<bool> Handle(UpdateContactTagCommand request, CancellationToken cancellationToken)
         {
             var contactTag = await _unitOfWork.ContactsTag.GetByIdAsync(request.Id);
-            if (contactTag == null) return false;
+            
+            if (contactTag is null) 
+                return false;
 
             contactTag.ContactId = request.ContactId;
             contactTag.TagId = request.TagId;

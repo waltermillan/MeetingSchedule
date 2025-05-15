@@ -4,5 +4,5 @@ using MediatR;
 
 namespace API.Features.ContactsTag.GetAll
 {
-    public record GetAllContactsTagQuery() : IRequest<IEnumerable<ContactTagDTO>>;
+    public record GetAllContactsTagQuery() : IRequest<IEnumerable<ContactTagDto>>;
 }

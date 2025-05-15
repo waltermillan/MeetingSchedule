@@ -15,7 +15,9 @@ public class DeleteTagHandler : IRequestHandler<DeleteTagCommand, bool>
     public async Task<bool> Handle(DeleteTagCommand request, CancellationToken cancellationToken)
     {
         var tag = await _unitOfWork.Tags.GetByIdAsync(request.Id);
-        if (tag == null) return false;
+        
+        if (tag is null) 
+            return false;
 
         _unitOfWork.Tags.Remove(tag);
         await _unitOfWork.SaveAsync(cancellationToken);

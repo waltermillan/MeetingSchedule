@@ -3,6 +3,7 @@ using API.Features.Tags.Delete;
 using API.Features.Tags.GetAll;
 using API.Features.Tags.GetById;
 using API.Features.Tags.Update;
+using API.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,11 +24,17 @@ namespace API.Controllers
             try
             {
                 var tagId = await _mediator.Send(command);
-                return CreatedAtAction(nameof(GetById), new { id = tagId }, tagId);
+
+                var data = new
+                {
+                    tagId
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Tag Created Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while creating the tag.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while creating the tag. Message: {0}", ex.Message)));
             }
         }
 
@@ -41,7 +48,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while retrieving all tags.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving all tags. Message: {0}", ex.Message)));
             }
         }
 
@@ -50,12 +57,12 @@ namespace API.Controllers
         {
             try
             {
-                var tag = await _mediator.Send(new GetTagByIdQuery(id));
+                var tag = await _mediator.Send(new GetByIdTagQuery(id));
                 return tag is null ? NotFound() : Ok(tag);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while retrieving the tag.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving the tag. Message: {0}", ex.Message)));
             }
         }
 
@@ -64,13 +71,21 @@ namespace API.Controllers
         {
             try
             {
-                if (id != command.Id) return BadRequest("Mismatched ID");
+                if (id != command.Id) 
+                    return BadRequest(ApiResponseFactory.Fail<object>("Mismatched ID"));
+
                 var updated = await _mediator.Send(command);
-                return updated ? NoContent() : NotFound();
+
+                var data = new
+                {
+                    updated
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Tags Updated Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while updating the tag.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while updating the tag. Message: {0}", ex.Message)));
             }
         }
 
@@ -80,11 +95,17 @@ namespace API.Controllers
             try
             {
                 var deleted = await _mediator.Send(new DeleteTagCommand(id));
-                return deleted ? NoContent() : NotFound();
+
+                var data = new
+                {
+                    deleted
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Tag Deleted Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while deleting the tag.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while deleting the tag. Message: {0}", ex.Message)));
             }
         }
     }

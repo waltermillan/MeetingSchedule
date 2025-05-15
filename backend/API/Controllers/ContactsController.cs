@@ -3,6 +3,7 @@ using API.Features.Contacts.Delete;
 using API.Features.Contacts.GetAll;
 using API.Features.Contacts.GetById;
 using API.Features.Contacts.Update;
+using API.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,11 +24,17 @@ namespace API.Controllers
             try
             {
                 var contactId = await _mediator.Send(command);
-                return CreatedAtAction(nameof(GetById), new { id = contactId }, contactId);
+
+                var data = new
+                {
+                    contactId
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Contact Created Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while creating the contact.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while creating the contact. Message: {0}", ex.Message)));
             }
         }
 
@@ -41,7 +48,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while retrieving all contacts.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving all contacts. Message: {0}", ex.Message)));
             }
         }
 
@@ -50,12 +57,12 @@ namespace API.Controllers
         {
             try
             {
-                var contact = await _mediator.Send(new GetContactByIdQuery(id));
+                var contact = await _mediator.Send(new GetByIdContactQuery(id));
                 return contact is null ? NotFound() : Ok(contact);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while retrieving the contact.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving the contact. Message: {0}", ex.Message)));
             }
         }
 
@@ -66,11 +73,17 @@ namespace API.Controllers
             {
                 if (id != command.Id) return BadRequest("Mismatched ID");
                 var updated = await _mediator.Send(command);
-                return updated ? NoContent() : NotFound();
+
+                var data = new
+                {
+                    updated
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Contact Updated Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while updating the contact.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while updating the contact. Message: {0}", ex.Message)));
             }
         }
 
@@ -80,11 +93,17 @@ namespace API.Controllers
             try
             {
                 var deleted = await _mediator.Send(new DeleteContactCommand(id));
-                return deleted ? NoContent() : NotFound();
+
+                var data = new
+                {
+                    deleted
+                };
+
+                return Ok(ApiResponseFactory.Success<object>(data, "Contact deleted Successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while deleting the contact.", Detailed = ex.Message });
+                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while deleting the contact. Message: {0}", ex.Message)));
             }
         }
     }
