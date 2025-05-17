@@ -1,0 +1,591 @@
+{
+	"info": {
+		"_postman_id": "5d7bacf9-7675-4fdf-9384-205c7ef706bc",
+		"name": "MeetingSchedule",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26692111"
+	},
+	"item": [
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jean Dux\",\r\n  \"email\": \"jean.dux@mycontacts.com\",\r\n  \"phone\": \"651477852\",\r\n  \"address\": \"Calle Amargura 77\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GettAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacts/d2bb384d-706e-46bf-8200-dba15d935fb2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacts",
+								"d2bb384d-706e-46bf-8200-dba15d935fb2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"d2bb384d-706e-46bf-8200-dba15d935fb2\",\r\n  \"name\": \"Juan Diaz\",\r\n  \"email\": \"juan.diaz@mycontacts.com\",\r\n  \"phone\": \"642414358\",\r\n  \"address\": \"Calle Victoria 89\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/contacts/d2bb384d-706e-46bf-8200-dba15d935fb2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacts",
+								"d2bb384d-706e-46bf-8200-dba15d935fb2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacts/d837cccf-f073-4612-a0fe-5ab0c3d8e403",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacts",
+								"d837cccf-f073-4612-a0fe-5ab0c3d8e403"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ContactsTag",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GettAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags/2af381dc-818e-4faf-abaf-14dacd164831",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags",
+								"2af381dc-818e-4faf-abaf-14dacd164831"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags/a33bdc5b-ef29-44ad-a963-b5a00f033483",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags",
+								"a33bdc5b-ef29-44ad-a963-b5a00f033483"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Basic\",\r\n  \"color\": \"Blue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GettAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/tags/9fe20d39-26da-4994-b6b3-a626f09251d2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"tags",
+								"9fe20d39-26da-4994-b6b3-a626f09251d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"644514ac-5e40-4b97-9aed-b882ab55784c\",\r\n    \"name\": \"Semi-Spetialxxx\",\r\n    \"color\": \"Silverxxx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/tags/644514ac-5e40-4b97-9aed-b882ab55784c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"tags",
+								"644514ac-5e40-4b97-9aed-b882ab55784c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/tags/644514ac-5e40-4b97-9aed-b882ab55784c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"tags",
+								"644514ac-5e40-4b97-9aed-b882ab55784c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Veronica Eztevez\",\r\n  \"userName\": \"VEXA2481\",\r\n  \"password\": \"string123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GettAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/users/e9287fbe-c8c0-49b6-a9d4-859e2e4caf07",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users",
+								"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07\",\r\n  \"name\": \"Esteban Raya\",\r\n  \"userName\": \"REXA2577\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/users/e9287fbe-c8c0-49b6-a9d4-859e2e4caf07",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users",
+								"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/users/958aa7ac-3fe2-40ee-8de4-9e3e83de77d2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users",
+								"958aa7ac-3fe2-40ee-8de4-9e3e83de77d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Failure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Successfully",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"MWXA2582\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"item": [
+				{
+					"name": "Test",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5184/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
