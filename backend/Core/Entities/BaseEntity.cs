@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Core.Entities;
-
-public class BaseEntity
+namespace Core.Entities
 {
-    [Column("id")]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public class BaseEntity
+    {
+        [Column("id")]
+        public Guid Id { get; set; } = Guid.NewGuid();
+    }
 }

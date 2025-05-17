@@ -6,8 +6,8 @@ namespace Core.Entities
     public class Tag : BaseEntity
     {
         [Column("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Column("color")]
-        public string Color { get; set; }
+        public string? Color { get; set; }
     }
 }

@@ -2,75 +2,52 @@
 using Core.Entities;
 using Core.Interfaces;
 
-namespace API.Services;
-
-public class UserService
+namespace API.Services
 {
-    private readonly IUserRepository _userRepository;
-
-    public UserService(IUserRepository userRepository)
+    public class UserService(IUserRepository userRepository)
     {
-        _userRepository = userRepository;
-    }
+        private readonly IUserRepository _userRepository = userRepository;
 
-
-
-    public async Task<UserDto> GetByIdAsync(Guid userId)
-    {
-        var user = await _userRepository.GetByIdAsync(userId);
-
-        if (user is null)
-            return null;
-
-        var userDto = new UserDto
+        public async Task<UserDto> GetByIdAsync(Guid userId)
         {
-            Id = user.Id,
-            UserName = user.UserName,
-            Name = user.Name
-        };
+            var user = await _userRepository.GetByIdAsync(userId)
+               ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
 
-        return userDto;
-    }
-
-    public async Task<IEnumerable<UserDto>> GetAllAsync()
-    {
-        var users = await _userRepository.GetAllAsync();
-
-        if (users is null || !users.Any())
-            return [];
-
-        var usersDto = new List<UserDto>();
-
-        foreach (var item in users)
-        {
-            var userDto = new UserDto
+            return new UserDto
             {
-                Id = item.Id,
-                UserName = item.UserName,
-                Name = item.Name
+                Id = user.Id,
+                UserName = user.UserName,
+                Name = user.Name
             };
-
-            usersDto.Add(userDto);
         }
 
-        return usersDto;
-    }
-
-    public async Task<User> GetByNameAsync(string userName)
-    {
-        var user = await _userRepository.GetByNameAsync(userName);
-
-        if (user is null)
-            return null;
-
-        var oUser = new User
+        public async Task<IEnumerable<UserDto>> GetAllAsync()
         {
-            Id = user.Id,
-            UserName = user.UserName,
-            Name = user.Name,
-            Password = user.Password,
-        };
+            var users = await _userRepository.GetAllAsync();
 
-        return oUser;
+            if (users is null || !users.Any())
+                return [];
+
+            return users.Select(user => new UserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Name = user.Name
+            });
+        }
+
+        public async Task<User> GetByNameAsync(string userName)
+        {
+            var user = await _userRepository.GetByNameAsync(userName)
+                ?? throw new KeyNotFoundException($"User with Name {userName} not found.");
+
+            return new User
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Name = user.Name,
+                Password = user.Password
+            };
+        }
     }
 }

@@ -1,12 +1,10 @@
-﻿using Core.Interfaces;
-
-namespace Core.Interfaces
+﻿namespace Core.Interfaces
 {
     public interface IUnitOfWork
     {
         IContactRepository Contacts { get; }
         ITagRepository Tags { get; }
-        IContactTagRepository ContactsTag { get; }
+        IContactTagRepository ContactTags { get; }
         IUserRepository Users { get; }
 
         void Dispose();

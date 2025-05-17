@@ -2,11 +2,6 @@
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -14,8 +9,8 @@ namespace Infrastructure.Repositories
     {
         public override async Task<User> GetByIdAsync(Guid id)
         {
-            return await _context.Users
-                               .FirstOrDefaultAsync(p => p.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
+            return user ?? throw new KeyNotFoundException($"User with ID {id} not found.");
         }
 
         public override async Task<IEnumerable<User>> GetAllAsync()
@@ -25,8 +20,11 @@ namespace Infrastructure.Repositories
 
         public async Task<User> GetByNameAsync(string userName)
         {
-            return await _context.Users
-                               .FirstOrDefaultAsync(p => p.UserName.ToUpper() == userName.ToUpper());
+            var user = await _context.Users
+                                     .FirstOrDefaultAsync(p => p.UserName != null &&
+                                                               p.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase));
+
+            return user ?? throw new KeyNotFoundException($"User with username '{userName}' not found.");
         }
     }
 }

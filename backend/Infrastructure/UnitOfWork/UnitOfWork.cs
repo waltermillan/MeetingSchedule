@@ -2,72 +2,63 @@
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 
-namespace Infrastructure.UnitOfWork;
-
-public class UnitOfWork : IUnitOfWork, IDisposable
+namespace Infrastructure.UnitOfWork
 {
-    private readonly Context _context;
-
-    private IContactRepository _contacts;
-    private ITagRepository _tags;
-    private IContactTagRepository _contactsTag;
-    public IUserRepository _users;
-
-    public UnitOfWork(Context context)
+    public class UnitOfWork(Context context) : IUnitOfWork, IDisposable
     {
-        _context = context;
-    }
+        private IContactRepository? _contacts;
+        private ITagRepository? _tags;
+        private IContactTagRepository? _contactsTag;
+        public IUserRepository? _users;
 
-	public IContactRepository Contacts
-	{
-		get
-		{
-			if (_contacts is null)
-				_contacts = new ContactRepository(_context);
-
-			return _contacts;
-		}
-	}
-
-	public ITagRepository Tags
-    {
-        get
+        public IContactRepository Contacts
         {
-            if (_tags is null)
-                _tags = new TagRepository(_context);
+            get
+            {
+                _contacts ??= new ContactRepository(context);
 
-            return _tags;
+                return _contacts;
+            }
         }
-    }
 
-    public IContactTagRepository ContactsTag
-    {
-        get
+        public ITagRepository Tags
         {
-            if (_contactsTag is null)
-                _contactsTag = new ContactTagRepository(_context);
+            get
+            {
+                _tags ??= new TagRepository(context);
 
-            return _contactsTag;
+                return _tags;
+            }
         }
-    }
 
-    public IUserRepository Users
-    {
-        get
+        public IContactTagRepository ContactTags
         {
-            if (_users is null)
-                _users = new UserRepository(_context);
-            return _users;
+            get
+            {
+                _contactsTag ??= new ContactTagRepository(context);
+
+                return _contactsTag;
+            }
         }
-    }
 
-    public async Task<int> SaveAsync(CancellationToken cancellationToken)
-    {
-        return await _context.SaveChangesAsync(cancellationToken);
-    }
+        public IUserRepository Users
+        {
+            get
+            {
+                _users ??= new UserRepository(context);
+                return _users;
+            }
+        }
 
-    public void Dispose()
-    {
-        _context.Dispose();
+        public async Task<int> SaveAsync(CancellationToken cancellationToken)
+        {
+            return await context.SaveChangesAsync(cancellationToken);
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using API.DTOs;
 using API.Services;
-using Core.Entities;
-using Core.Interfaces;
 using MediatR;
 
 namespace API.Features.Users.GetById

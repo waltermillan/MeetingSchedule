@@ -1,30 +1,31 @@
 ﻿using Core.Interfaces;
 using MediatR;
 
-namespace API.Features.Tags.Update;
-
-public class UpdateTagHandler : IRequestHandler<UpdateTagCommand, bool>
+namespace API.Features.Tags.Update
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UpdateTagHandler(IUnitOfWork unitOfWork)
+    public class UpdateTagHandler : IRequestHandler<UpdateTagCommand, bool>
     {
-        _unitOfWork = unitOfWork;
-    }
+        private readonly IUnitOfWork _unitOfWork;
 
-    public async Task<bool> Handle(UpdateTagCommand request, CancellationToken cancellationToken)
-    {
-        var tag = await _unitOfWork.Tags.GetByIdAsync(request.Id);
-        
-        if (tag is null) 
-            return false;
+        public UpdateTagHandler(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
-        tag.Name = request.Name;
-        tag.Color = request.Color;
+        public async Task<bool> Handle(UpdateTagCommand request, CancellationToken cancellationToken)
+        {
+            var tag = await _unitOfWork.Tags.GetByIdAsync(request.Id);
 
-        _unitOfWork.Tags.Update(tag);
-        await _unitOfWork.SaveAsync(cancellationToken);
+            if (tag is null)
+                return false;
 
-        return true;
+            tag.Name = request.Name;
+            tag.Color = request.Color;
+
+            _unitOfWork.Tags.Update(tag);
+            await _unitOfWork.SaveAsync(cancellationToken);
+
+            return true;
+        }
     }
 }

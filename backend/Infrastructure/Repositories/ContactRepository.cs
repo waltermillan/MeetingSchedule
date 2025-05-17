@@ -9,8 +9,8 @@ namespace Infrastructure.Repositories
     {
         public override async Task<Contact> GetByIdAsync(Guid id)
         {
-            return await _context.Contacts
-                              .FirstOrDefaultAsync(p => p.Id == id);
+            var contact = await _context.Contacts.FirstOrDefaultAsync(p => p.Id == id);
+            return contact ?? throw new KeyNotFoundException($"Contact with ID {id} not found.");
         }
 
         public override async Task<IEnumerable<Contact>> GetAllAsync()

@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Infrastructure.Data;
-using System.IO;
 
 namespace Infrastructure.Data
 {

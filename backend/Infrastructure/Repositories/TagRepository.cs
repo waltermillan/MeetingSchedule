@@ -9,8 +9,8 @@ namespace Infrastructure.Repositories
     {
         public override async Task<Tag> GetByIdAsync(Guid id)
         {
-            return await _context.Tags
-                              .FirstOrDefaultAsync(p => p.Id == id);
+            var tag = await _context.Tags.FirstOrDefaultAsync(p => p.Id == id);
+            return tag ?? throw new KeyNotFoundException($"Tag with ID {id} not found.");
         }
         public override async Task<IEnumerable<Tag>> GetAllAsync()
         {

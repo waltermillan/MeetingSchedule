@@ -1,38 +1,39 @@
 ﻿using Core.Interfaces;
 using MediatR;
 
-namespace API.Features.Users.Update;
-
-public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, bool>
+namespace API.Features.Users.Update
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IPasswordHasher _passwordHasher;
-
-    public UpdateUserHandler(IUnitOfWork unitOfWork, IPasswordHasher passwordHasher)
+    public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, bool>
     {
-        _unitOfWork = unitOfWork;
-        _passwordHasher = passwordHasher;
-    }
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPasswordHasher _passwordHasher;
 
-    public async Task<bool> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
-    {
-        var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
+        public UpdateUserHandler(IUnitOfWork unitOfWork, IPasswordHasher passwordHasher)
+        {
+            _unitOfWork = unitOfWork;
+            _passwordHasher = passwordHasher;
+        }
 
-        if (user is null)
-            return false;
+        public async Task<bool> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
 
-        user.Name = request.Name;
-        user.UserName = request.UserName;
-        user.Password = HashPassword(request.Password);
+            if (user is null)
+                return false;
 
-        _unitOfWork.Users.Update(user);
-        await _unitOfWork.SaveAsync(cancellationToken);
+            user.Name = request.Name;
+            user.UserName = request.UserName;
+            user.Password = HashPassword(request.Password);
 
-        return true;
-    }
+            _unitOfWork.Users.Update(user);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
-    private string HashPassword(string password)
-    {
-        return password = _passwordHasher.HashPassword(password);
+            return true;
+        }
+
+        private string HashPassword(string password)
+        {
+            return password = _passwordHasher.HashPassword(password);
+        }
     }
 }

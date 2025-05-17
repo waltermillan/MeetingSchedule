@@ -2,11 +2,6 @@
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -14,12 +9,12 @@ namespace Infrastructure.Repositories
     {
         public override async Task<ContactTag> GetByIdAsync(Guid id)
         {
-            return await _context.ContactsTag
-                              .FirstOrDefaultAsync(p => p.Id == id);
+            var contactTag = await _context.ContactTags.FirstOrDefaultAsync(p => p.Id == id);
+            return contactTag ?? throw new KeyNotFoundException($"contact-tag with ID {id} not found.");
         }
         public override async Task<IEnumerable<ContactTag>> GetAllAsync()
         {
-            return await _context.ContactsTag.ToListAsync();
+            return await _context.ContactTags.ToListAsync();
         }
     }
 }

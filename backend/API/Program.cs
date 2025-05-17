@@ -11,19 +11,17 @@ var appName = builder.Configuration["SystemName:Name"] ?? "MeetingSchedule";
 var policyName = builder.Configuration["CorsSettings:PolicyName"] ?? "CorsPolicy";
 
 builder.Logging.ClearProviders();
-
 builder.Logging.AddFilter("Microsoft", LogLevel.Warning);
 builder.Logging.AddFilter("System", LogLevel.Warning);
 
 // Serilog Configuration
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.File($"logs/{appName}-.log", rollingInterval: RollingInterval.Day) 
-    .Filter.ByExcluding(Matching.FromSource("Microsoft.EntityFrameworkCore")) 
-    .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore")) 
+    .WriteTo.File($"logs/{appName}-.log", rollingInterval: RollingInterval.Day)
+    .Filter.ByExcluding(Matching.FromSource("Microsoft.EntityFrameworkCore"))
+    .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore"))
     .CreateLogger();
 
 builder.Logging.AddSerilog();
-
 builder.Services.ConfigureRateLimiting(builder.Configuration);
 
 // Force automatically generated paths (as with [controller]) to be lowercase
@@ -35,11 +33,10 @@ builder.Services.AddAplicacionServices();
 builder.Services.AddControllers();
 
 // Configure DbContext with SQL Server
-builder.Services.AddDbContext<Context>(options =>
-{
-    string connectionString = builder.Configuration.GetConnectionString("MeetingScheduleAppConnection");
-    options.UseSqlServer(connectionString);
-});
+builder.Services.ConfigureDatabaseContext(builder.Configuration);
+
+// Configure Health Checks
+builder.Services.ConfigureHealthCheck(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -50,7 +47,6 @@ var app = builder.Build();
 app.UseHandlerException();
 
 app.UseIpRateLimiting();
-
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 // Configure the HTTP request pipeline.
@@ -79,6 +75,11 @@ using (var scope = app.Services.CreateScope())
 app.UseCors(policyName);
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+// Health Check mapping with custom JSON response
+builder.Services.HealthCheckMapping(app);
+
 app.MapControllers();
 
 app.Run();
+

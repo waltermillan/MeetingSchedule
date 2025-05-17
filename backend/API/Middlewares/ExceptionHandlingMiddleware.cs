@@ -1,42 +1,43 @@
-﻿using System.Net;
+﻿using Core.Interfaces;
+using System.Net;
 using System.Text.Json;
-using Core.Interfaces;
 
-namespace API.Middlewares;
-
-public class ExceptionHandlingMiddleware
+namespace API.Middlewares
 {
-    private readonly RequestDelegate _next;
-    private readonly ILoggingService _logger;
-
-    public ExceptionHandlingMiddleware(RequestDelegate next, ILoggingService logger)
+    public class ExceptionHandlingMiddleware
     {
-        _next = next;
-        _logger = logger;
-    }
+        private readonly RequestDelegate _next;
+        private readonly ILoggingService _logger;
 
-    public async Task Invoke(HttpContext context)
-    {
-        try
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILoggingService logger)
         {
-            await _next(context);
+            _next = next;
+            _logger = logger;
         }
-        catch (Exception ex)
+
+        public async Task Invoke(HttpContext context)
         {
-            _logger.LogError("Unhandled exception occurred", ex);
-
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Response.ContentType = "application/json";
-
-            var response = new
+            try
             {
-                StatusCode = context.Response.StatusCode,
-                Message = "An unexpected error occurred.",
-                Detailed = ex.Message
-            };
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unhandled exception occurred", ex);
 
-            var json = JsonSerializer.Serialize(response);
-            await context.Response.WriteAsync(json);
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.ContentType = "application/json";
+
+                var response = new
+                {
+                    StatusCode = context.Response.StatusCode,
+                    Message = "An unexpected error occurred.",
+                    Detailed = ex.Message
+                };
+
+                var json = JsonSerializer.Serialize(response);
+                await context.Response.WriteAsync(json);
+            }
         }
     }
 }

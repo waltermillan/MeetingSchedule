@@ -47,7 +47,8 @@ public class GenericRepository<T>(Context context) : IGenericRepository<T> where
 
     public virtual async Task<T> GetByIdAsync(Guid id)
     {
-        return await _context.Set<T>().FindAsync(id);
+        var entity = await _context.Set<T>().FindAsync(id);
+        return entity ?? throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with ID {id} not found.");
     }
 
     public virtual void Remove(T entity)

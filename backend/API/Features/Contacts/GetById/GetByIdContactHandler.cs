@@ -1,6 +1,6 @@
-﻿using Core.Interfaces;
+﻿using Core.Entities;
+using Core.Interfaces;
 using MediatR;
-using Core.Entities;
 
 namespace API.Features.Contacts.GetById
 {

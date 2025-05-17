@@ -1,7 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using MediatR;
-using Infrastructure.Helpers;
 
 namespace API.Features.Users.Create
 {

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-
     public partial class Context : DbContext
     {
         public Context() { }
@@ -11,7 +10,7 @@ namespace Infrastructure.Data
 
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<ContactTag> ContactsTag { get; set; }
+        public virtual DbSet<ContactTag> ContactTags { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

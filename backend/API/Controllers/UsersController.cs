@@ -6,41 +6,42 @@ using API.Features.Users.GetById;
 using API.Features.Users.Update;
 using API.Responses;
 using API.Services;
-using Azure.Core;
+using Core.Constants;
 using Core.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace API.Controllers
 {
-    public class UsersController : BaseApiController
+    public class UsersController(IMediator mediator, UserService userService, IPasswordHasher passwordHasher) : BaseApiController
     {
-        private readonly IMediator _mediator;
-        private readonly UserService _userService;
-        private readonly IPasswordHasher _passwordHasher;
-
-        public UsersController(IMediator mediator, UserService userService, IPasswordHasher passwordHasher)
-        {
-            _mediator = mediator;
-            _userService = userService;
-            _passwordHasher = passwordHasher;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly UserService _userService = userService;
+        private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var userName = request.UserName.ToUpper();
+            var userName = request.UserName?.ToUpper();
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest(UserMessages.LoginUserNameError);
+            }
+
             var password = request.Password;
 
             try
             {
                 var user = await _userService.GetByNameAsync(userName);
 
-                if (user is null || !_passwordHasher.VerifyPassword(password, user.Password))
+                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(user?.Password))
                 {
-                    return Unauthorized(new { Code = 401, Message = "Invalid UserName Or Password." });
+                    return Unauthorized(new { Code = 401, Message = UserMessages.LoginFailure });
+                }
+
+                if (!_passwordHasher.VerifyPassword(password, user.Password))
+                {
+                    return Unauthorized(new { Code = 401, Message = UserMessages.LoginFailure });
                 }
 
                 var data = new
@@ -50,28 +51,30 @@ namespace API.Controllers
                     user.UserName
                 };
 
-                return Ok(ApiResponseFactory.Success<object>(data, "User Authenticated Successfully."));
+                return Ok(ApiResponseFactory.Success<object>(data, UserMessages.LoginSuccess));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("Authentication Error. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.AuthError, ex.Message)));
             }
         }
 
-            [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
         {
             try
             {
                 var tagId = await _mediator.Send(command);
-                
+
                 var data = CreatedAtAction(nameof(GetById), new { id = tagId }, tagId);
 
-                return Ok(ApiResponseFactory.Success<object>(data, "User Created Successfully."));
+                return Ok(ApiResponseFactory.Success<object>(data, UserMessages.CreationSuccess));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while creating the user. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.CreationFailure, ex.Message)));
             }
         }
 
@@ -85,7 +88,8 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving all users. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.RetrievalAllFailure, ex.Message)));
             }
         }
 
@@ -99,7 +103,8 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while retrieving the user. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.RetrievalByIdFailure, ex.Message)));
             }
         }
 
@@ -108,14 +113,17 @@ namespace API.Controllers
         {
             try
             {
-                if (id != command.Id) return BadRequest("Mismatched ID");
+                if (id != command.Id)
+                    return BadRequest(UserMessages.IdMismatch);
+
                 var updated = await _mediator.Send(command);
 
-                return Ok(ApiResponseFactory.Success<object>(updated, "User Updated Successfully."));
+                return Ok(ApiResponseFactory.Success<object>(updated, UserMessages.UpdateSuccess));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while updating the user. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.UpdateFailure, ex.Message)));
             }
         }
 
@@ -126,11 +134,12 @@ namespace API.Controllers
             {
                 var deleted = await _mediator.Send(new DeleteUserCommand(id));
 
-                return Ok(ApiResponseFactory.Success<object>(deleted, "User Deleted Successfully."));
+                return Ok(ApiResponseFactory.Success<object>(deleted, UserMessages.DeleteSuccess));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format("An error occurred while deleting the user. Message: {0}", ex.Message)));
+                return StatusCode(500, ApiResponseFactory.Fail<object>(
+                    string.Format(UserMessages.DeleteFailure, ex.Message)));
             }
         }
     }
