@@ -29,7 +29,9 @@ namespace API.Services
                 ContactId = contact.Id,
                 Contact = contact.Name,
                 TagId = tag.Id,
-                Tag = tag.Name
+                Tag = tag.Name,
+                CreatedAt = contactTag.CreatedAt,
+                UpdatedAt = contactTag.UpdatedAt
             };
         }
 
@@ -56,7 +58,9 @@ namespace API.Services
                     ContactId = contact.Id,
                     Contact = contact.Name,
                     TagId = tag.Id,
-                    Tag = tag.Name
+                    Tag = tag.Name,
+                    CreatedAt = item.CreatedAt,
+                    UpdatedAt = item.UpdatedAt
                 });
             }
 

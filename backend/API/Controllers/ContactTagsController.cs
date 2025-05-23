@@ -7,6 +7,8 @@ using API.Responses;
 using Core.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace API.Controllers
 {
@@ -24,10 +26,13 @@ namespace API.Controllers
                     contactTagId
                 };
 
+                Log.Information($"Assignment Contact: {command.ContactId} - Tag: {command.TagId} created successfully.");
                 return Ok(ApiResponseFactory.Success<object>(data, ContactTagMessages.CreationSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error creating contact-tag. \nContact: {command.ContactId} - Tag: {command.TagId}. \nException: {ex.InnerException}");
+                
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactTagMessages.CreationFailure, ex.Message)));
             }
@@ -43,6 +48,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting contact-tags. \nException: {ex.InnerException}");
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactTagMessages.RetrievalAllFailure, ex.Message)));
             }
@@ -58,6 +64,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting contact-tag. \nException: {ex.InnerException}");
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactTagMessages.RetrievalByIdFailure, ex.Message)));
             }
@@ -78,10 +85,14 @@ namespace API.Controllers
                     updated
                 };
 
+                Log.Information($"Assignment Contact: {command.ContactId} - Tag: {command.TagId} updated successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, ContactTagMessages.UpdateSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error updating contact-tag. \nContact: {command.ContactId} - Tag: {command.TagId}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactTagMessages.UpdateFailure, ex.Message)));
             }
@@ -99,10 +110,15 @@ namespace API.Controllers
                     deleted
                 };
 
+                Log.Information($"Assignment ID Contact-Tag: {id} deleted successfully.");
+
+
                 return Ok(ApiResponseFactory.Success<object>(data, ContactTagMessages.DeleteSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error deleting contact-tag. \nID Contact-Tag: {id} \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactTagMessages.DeleteFailure, ex.Message)));
             }

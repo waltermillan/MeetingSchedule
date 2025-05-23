@@ -1,5 +1,4 @@
 ﻿using API.Features.ContactTags.Create;
-using API.Features.ContactTags.CreateContactTag;
 using Core.Entities;
 using Core.Interfaces;
 using Moq;
@@ -9,7 +8,12 @@ namespace Tests.UnitTests.ContactTags.Commands
 {
     public class CreateContactTagHandlerTests
     {
-        private CreateContactTagCommand LoadCommandFromJson()
+        private static JsonSerializerOptions GetOptions()
+        {
+            return new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        }
+
+        private static CreateContactTagCommand LoadCommandFromJson(JsonSerializerOptions options)
         {
             var currentDir = Directory.GetCurrentDirectory();
             var projectRoot = Path.GetFullPath(Path.Combine(currentDir, @"..\..\..\..\Tests"));
@@ -19,7 +23,6 @@ namespace Tests.UnitTests.ContactTags.Commands
                 throw new FileNotFoundException($"File not found: {jsonPath}");
 
             var json = File.ReadAllText(jsonPath);
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var command = JsonSerializer.Deserialize<CreateContactTagCommand>(json, options);
 
             return command!;
@@ -29,7 +32,7 @@ namespace Tests.UnitTests.ContactTags.Commands
         public async Task Handle_ShouldCreateContactTag_AndReturnId()
         {
             // Arrange
-            var command = LoadCommandFromJson();
+            var command = LoadCommandFromJson(GetOptions());
 
             var fakeRepo = new Mock<IContactTagRepository>();
             var fakeUow = new Mock<IUnitOfWork>();

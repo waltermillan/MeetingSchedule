@@ -36,4 +36,8 @@
     <ProjectReference Include="..\API\API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Postman\" />
+  </ItemGroup>
+
 </Project>

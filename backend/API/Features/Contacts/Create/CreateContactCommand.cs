@@ -13,6 +13,7 @@ namespace API.Features.Contacts.Create
         string Name,
         string Email,
         string Phone,
-        string Address
+        string Address,
+        Guid UserId
     ) : IRequest<Guid>;
 }

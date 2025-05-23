@@ -7,6 +7,8 @@ namespace API.Features.Contacts.Update
         string Name,
         string Email,
         string Phone,
-        string Address
+        string Address,
+        DateTime UpdatedAt,
+        Guid UserId
     ) : IRequest<bool>;
 }

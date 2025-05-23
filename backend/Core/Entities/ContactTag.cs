@@ -9,5 +9,7 @@ namespace Core.Entities
         public Guid ContactId { get; set; }
         [Column("tag_id")]
         public Guid TagId { get; set; }
+        [Column("user_id")]
+        public Guid UserId { get; set; }
     }
 }

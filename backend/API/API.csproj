@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Users\Update\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>

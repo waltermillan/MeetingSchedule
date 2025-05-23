@@ -3,7 +3,7 @@ using Core.Entities;
 using Core.Interfaces;
 using MediatR;
 
-namespace API.Features.Tags.CreateTag
+namespace API.Features.Tags.Create
 {
     public class CreateTagHandler : IRequestHandler<CreateTagCommand, Guid>
     {
@@ -21,7 +21,10 @@ namespace API.Features.Tags.CreateTag
             var tag = new Tag
             {
                 Name = request.Name,
-                Color = request.Color
+                Color = request.Color,
+                CreatedAt = now,
+                UpdatedAt = now,
+                UserId = request.UserId
             };
 
             _unitOfWork.Tags.Add(tag);

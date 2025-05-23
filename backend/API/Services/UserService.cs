@@ -17,7 +17,9 @@ namespace API.Services
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Name = user.Name
+                Name = user.Name,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
             };
         }
 
@@ -32,7 +34,9 @@ namespace API.Services
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Name = user.Name
+                Name = user.Name,
+                CreatedAt = user.CreatedAt,
+
             });
         }
 

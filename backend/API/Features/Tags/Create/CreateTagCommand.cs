@@ -4,6 +4,7 @@ namespace API.Features.Tags.Create
 {
     public record CreateTagCommand(
         string Name,
-        string Color
+        string Color,
+        Guid? UserId
     ) : IRequest<Guid>;
 }

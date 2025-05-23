@@ -17,6 +17,15 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // User
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.UserName).IsRequired();
+                entity.Property(e => e.Password).IsRequired();
+            });
+
             // Contact
             modelBuilder.Entity<Contact>(entity =>
             {
@@ -27,6 +36,10 @@ namespace Infrastructure.Data
                 entity.Property(e => e.Address);
                 entity.Property(e => e.CreatedAt).IsRequired();
                 entity.Property(e => e.UpdatedAt).IsRequired();
+                entity.HasOne<User>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
             // Tag
@@ -35,6 +48,10 @@ namespace Infrastructure.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired();
                 entity.Property(e => e.Color);
+                entity.HasOne<User>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
             // ContactTag
@@ -51,16 +68,13 @@ namespace Infrastructure.Data
                       .WithMany()
                       .HasForeignKey(e => e.TagId)
                       .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne<User>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // User
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name).IsRequired();
-                entity.Property(e => e.UserName).IsRequired();
-                entity.Property(e => e.Password).IsRequired();
-            });
         }
     }
 }

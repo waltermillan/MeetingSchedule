@@ -7,12 +7,12 @@ using API.Responses;
 using Core.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace API.Controllers
 {
     public class ContactsController(IMediator mediator) : BaseApiController
     {
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateContactCommand command)
         {
@@ -25,10 +25,13 @@ namespace API.Controllers
                     contactId
                 };
 
+                Log.Information($"Contact: {command.Name} created successfully.");
                 return Ok(ApiResponseFactory.Success<object>(data, ContactMessages.CreationSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error creating contact. \nName: {command.Name}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactMessages.CreationFailure, ex.Message)));
             }
@@ -44,6 +47,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting contacts. \nException: {ex.InnerException}");
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactMessages.RetrievalAllFailure, ex.Message)));
             }
@@ -59,6 +63,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting contact. ID Contact: {id} \nException: {ex.InnerException}");
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactMessages.RetrievalByIdFailure, ex.Message)));
             }
@@ -79,10 +84,14 @@ namespace API.Controllers
                     updated
                 };
 
+                Log.Information($"Contact: {command.Name} updated successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, ContactMessages.UpdateSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error updating contact. \nName: {command.Name}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactMessages.UpdateFailure, ex.Message)));
             }
@@ -100,10 +109,13 @@ namespace API.Controllers
                     deleted
                 };
 
+                Log.Information($"ID Contact: {id} deleted successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, ContactMessages.DeleteSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error deleting contact. ID Contact: {id} \nException: {ex.InnerException}");
                 return StatusCode(500, ApiResponseFactory.Fail<object>(
                     string.Format(ContactMessages.DeleteFailure, ex.Message)));
             }

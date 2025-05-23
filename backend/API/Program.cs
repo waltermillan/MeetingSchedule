@@ -7,21 +7,12 @@ using Serilog.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var appName = builder.Configuration["SystemName:Name"] ?? "MeetingSchedule";
 var policyName = builder.Configuration["CorsSettings:PolicyName"] ?? "CorsPolicy";
 
-builder.Logging.ClearProviders();
-builder.Logging.AddFilter("Microsoft", LogLevel.Warning);
-builder.Logging.AddFilter("System", LogLevel.Warning);
+// Logging configuration
+builder.ConfigureLogging();
 
-// Serilog Configuration
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.File($"logs/{appName}-.log", rollingInterval: RollingInterval.Day)
-    .Filter.ByExcluding(Matching.FromSource("Microsoft.EntityFrameworkCore"))
-    .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore"))
-    .CreateLogger();
-
-builder.Logging.AddSerilog();
+// Rate limiting configuration
 builder.Services.ConfigureRateLimiting(builder.Configuration);
 
 // Force automatically generated paths (as with [controller]) to be lowercase
@@ -35,7 +26,7 @@ builder.Services.AddControllers();
 // Configure DbContext with SQL Server
 builder.Services.ConfigureDatabaseContext(builder.Configuration);
 
-// Configure Health Checks
+// Configure health checks
 builder.Services.ConfigureHealthCheck(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -56,27 +47,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    try
-    {
-        var context = services.GetRequiredService<Context>();
-        await context.Database.MigrateAsync();
-    }
-    catch (Exception ex)
-    {
-        var logger = loggerFactory.CreateLogger<Program>();
-        logger.LogError(ex, "An error occurred during migration");
-    }
-}
+// Configure Migrations
+await app.Services.ConfigureMigrationsAsync();
 
 app.UseCors(policyName);
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
-// Health Check mapping with custom JSON response
+// Health check mapping with custom JSON response
 builder.Services.HealthCheckMapping(app);
 
 app.MapControllers();

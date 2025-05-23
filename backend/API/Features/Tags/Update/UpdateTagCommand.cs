@@ -5,6 +5,7 @@ namespace API.Features.Tags.Update
     public record UpdateTagCommand(
         Guid Id,
         string Name,
-        string Color
+        string Color,
+        Guid? UserId
     ) : IRequest<bool>;
 }

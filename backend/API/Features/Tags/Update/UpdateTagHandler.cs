@@ -19,8 +19,12 @@ namespace API.Features.Tags.Update
             if (tag is null)
                 return false;
 
+            DateTime now = DateTime.UtcNow;
+
             tag.Name = request.Name;
             tag.Color = request.Color;
+            tag.UserId = request.UserId;
+            tag.UpdatedAt = now;
 
             _unitOfWork.Tags.Update(tag);
             await _unitOfWork.SaveAsync(cancellationToken);

@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories
         {
             var user = await _context.Users
                                      .FirstOrDefaultAsync(p => p.UserName != null &&
-                                                               p.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase));
+                                                                p.UserName.ToUpper().Equals(userName.ToUpper()));
 
             return user ?? throw new KeyNotFoundException($"User with username '{userName}' not found.");
         }

@@ -7,6 +7,8 @@ using API.Responses;
 using Core.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace API.Controllers
 {
@@ -24,10 +26,14 @@ namespace API.Controllers
                     tagId
                 };
 
+                Log.Information($"Tag: {command.Name} created successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, TagMessages.CreationSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error creating tag. \nName: {command.Name}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format(TagMessages.CreationFailure, ex.Message)));
             }
         }
@@ -42,6 +48,8 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting tags. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format(TagMessages.RetrievalAllFailure, ex.Message)));
             }
         }
@@ -56,6 +64,8 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error($"Error getting tags. ID Tag: {id} \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format(TagMessages.RetrievalByIdFailure, ex.Message)));
             }
         }
@@ -75,10 +85,14 @@ namespace API.Controllers
                     updated
                 };
 
+                Log.Information($"Tag: {command.Name} updated successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, TagMessages.UpdateSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error updating tag. \nName: {command.Name}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format(TagMessages.UpdateFailure, ex.Message)));
             }
         }
@@ -95,10 +109,14 @@ namespace API.Controllers
                     deleted
                 };
 
+                Log.Information($"ID Tag: {id} deleted successfully.");
+
                 return Ok(ApiResponseFactory.Success<object>(data, TagMessages.DeleteSuccess));
             }
             catch (Exception ex)
             {
+                Log.Error($"Error deleting tag. \nID Tag: {id}. \nException: {ex.InnerException}");
+
                 return StatusCode(500, ApiResponseFactory.Fail<object>(string.Format(TagMessages.DeleteFailure, ex.Message)));
             }
         }

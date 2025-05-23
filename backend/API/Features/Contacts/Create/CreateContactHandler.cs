@@ -13,7 +13,7 @@ using MediatR;
 
  */
 
-namespace API.Features.Contacts.CreateContact
+namespace API.Features.Contacts.Create
 {
     public class CreateContactHandler : IRequestHandler<CreateContactCommand, Guid>
     {
@@ -35,7 +35,8 @@ namespace API.Features.Contacts.CreateContact
                 Phone = request.Phone,
                 Address = request.Address,
                 CreatedAt = now,
-                UpdatedAt = now
+                UpdatedAt = now,
+                UserId = request.UserId
             };
 
             _unitOfWork.Contacts.Add(contact);

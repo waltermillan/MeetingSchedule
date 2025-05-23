@@ -36,7 +36,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Juan Diaz\",\r\n\"email\": \"juan.diaz@mycontacts.com\",\r\n\"phone\": \"654258753\",\r\n\"address\": \"Calle Ferrandiz 455\",\r\n\"createdAt\": \"2025-05-23T13:09:27.153Z\",\r\n\"updatedAt\": \"2025-05-23T13:09:27.153Z\",\r\n\"userId\": \"c6d210a9-d891-4627-818e-271dcf39b5e6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/contacts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:10:49 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "7"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:10:52.5039025Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact created successfully.\",\n    \"data\": {\n        \"contactId\": \"299e1125-ebd7-4cd2-bfc8-cec30d749d66\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "GettAll",
@@ -44,7 +108,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/contacts",
+							"raw": "http://localhost:5184/api/contacts?v=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -53,10 +117,71 @@
 							"path": [
 								"api",
 								"contacts"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": "2"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GettAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/contacts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:41:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:41:19.6239220Z"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"John Doe\",\n        \"phone\": \"658422123\",\n        \"email\": \"john.doe@mycontacts.cpm\",\n        \"address\": \"Calle Amargura 23\",\n        \"id\": \"7b358acc-be03-4e46-8d1e-2a982656b9ab\",\n        \"createdAt\": \"2025-05-11T23:08:46.9765116\",\n        \"updatedAt\": \"2025-05-12T20:01:19.7548544\"\n    },\n    {\n        \"name\": \"Juan Dias\",\n        \"phone\": \"645151235\",\n        \"email\": \"juana.dias@mycontacts.com\",\n        \"address\": \"Calle Barise 23\",\n        \"id\": \"b55a05f9-2cc4-4e55-89aa-3028572c96f2\",\n        \"createdAt\": \"2025-05-19T22:39:01.4438971\",\n        \"updatedAt\": \"2025-05-21T21:34:14.6417213\"\n    },\n    {\n        \"name\": \"Jean Dux\",\n        \"phone\": \"651477852\",\n        \"email\": \"jean.dux@mycontacts.com\",\n        \"address\": \"Calle Amargura 77\",\n        \"id\": \"b155b6f7-ecb6-4b62-8ccb-5a2a941f8df9\",\n        \"createdAt\": \"2025-05-11T23:10:56.467027\",\n        \"updatedAt\": \"2025-05-11T23:10:56.467027\"\n    },\n    {\n        \"name\": \"Joao Dias\",\n        \"phone\": \"651423500\",\n        \"email\": \"joao.dias@mycontacts.com\",\n        \"address\": \"Calle Aranjuez 23\",\n        \"id\": \"99c70149-aa76-4b4b-b455-a1242fc15362\",\n        \"createdAt\": \"2025-05-16T14:03:50.7534512\",\n        \"updatedAt\": \"2025-05-16T15:00:05.9261357\"\n    },\n    {\n        \"name\": \"Young Lee\",\n        \"phone\": \"642414358\",\n        \"email\": \"young.lee@mycontacts.com\",\n        \"address\": \"Calle Victoria 89\",\n        \"id\": \"5efa84c3-736c-4765-81f4-bd2c4322f6fd\",\n        \"createdAt\": \"2025-05-15T22:18:46.3493015\",\n        \"updatedAt\": \"2025-05-15T22:23:44.8356409\"\n    },\n    {\n        \"name\": \"Juan Diaz\",\n        \"phone\": \"642414358\",\n        \"email\": \"juan.diaz@mycontacts.com\",\n        \"address\": \"Calle Victoria 89\",\n        \"id\": \"d2bb384d-706e-46bf-8200-dba15d935fb2\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:10:51.1498767\"\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "GetById",
@@ -77,7 +202,63 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GetById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/contacts/5efa84c3-736c-4765-81f4-bd2c4322f6fd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacts",
+										"5efa84c3-736c-4765-81f4-bd2c4322f6fd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:41:25 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:41:36.1300341Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Young Lee\",\n    \"phone\": \"642414358\",\n    \"email\": \"young.lee@mycontacts.com\",\n    \"address\": \"Calle Victoria 89\",\n    \"id\": \"5efa84c3-736c-4765-81f4-bd2c4322f6fd\",\n    \"createdAt\": \"2025-05-15T22:18:46.3493015\",\n    \"updatedAt\": \"2025-05-15T22:23:44.8356409\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update",
@@ -107,7 +288,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"name\": \"Jean Deux\",\r\n        \"phone\": \"642423102\",\r\n        \"email\": \"jean.deux@mycontacts.com\",\r\n        \"address\": \"Calle Hurtado 29\",\r\n        \"userId\": \"c6d210a9-d891-4627-818e-271dcf39b5e6\",\r\n        \"id\": \"48da85bc-ce2d-4573-9e3a-04ae55741363\",\r\n        \"updatedAt\": \"2025-05-25T13:10:42.7690914\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/contacts/48da85bc-ce2d-4573-9e3a-04ae55741363",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacts",
+										"48da85bc-ce2d-4573-9e3a-04ae55741363"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:12:25 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:12:36.0427022Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact updated successfully.\",\n    \"data\": {\n        \"updated\": true\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete",
@@ -115,7 +361,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/contacts/d837cccf-f073-4612-a0fe-5ab0c3d8e403",
+							"raw": "http://localhost:5184/api/contacts/532bfc1a-fdca-436c-968b-aed117123682",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -124,11 +370,67 @@
 							"path": [
 								"api",
 								"contacts",
-								"d837cccf-f073-4612-a0fe-5ab0c3d8e403"
+								"532bfc1a-fdca-436c-968b-aed117123682"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/contacts/532bfc1a-fdca-436c-968b-aed117123682",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacts",
+										"532bfc1a-fdca-436c-968b-aed117123682"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:12:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:13:05.9986817Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact deleted successfully.\",\n    \"data\": {\n        \"deleted\": true\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -140,6 +442,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": \"48DA85BC-CE2D-4573-9E3A-04AE55741363\",\r\n  \"tagId\": \"ED6CC526-3CF3-40B2-B146-ECAD0D6CAC66\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:5184/api/contacttags",
 							"protocol": "http",
@@ -153,13 +464,89 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contactId\": \"48DA85BC-CE2D-4573-9E3A-04AE55741363\",\r\n  \"tagId\": \"ED6CC526-3CF3-40B2-B146-ECAD0D6CAC66\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/contacttags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacttags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:24:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "8"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:24:03.8021489Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact-Tag created successfully.\",\n    \"data\": {\n        \"contactTagId\": \"0c4f4d53-984b-4a44-a2bf-5172a1e7ad6a\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "GettAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:5184/api/contacttags",
 							"protocol": "http",
@@ -173,7 +560,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GettAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/contacttags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacttags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:18.2212502Z"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"2af381dc-818e-4faf-abaf-14dacd164831\",\n        \"contactId\": \"7b358acc-be03-4e46-8d1e-2a982656b9ab\",\n        \"contact\": \"John Doe\",\n        \"tagId\": \"474d8a1e-a11c-4131-b4ef-3f2da6f94a71\",\n        \"tag\": \"Spetial\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"id\": \"7496abef-a831-4743-ba6b-1cf62c36855f\",\n        \"contactId\": \"7b358acc-be03-4e46-8d1e-2a982656b9ab\",\n        \"contact\": \"John Doe\",\n        \"tagId\": \"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3\",\n        \"tag\": \"Basic\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"id\": \"689820ba-aad1-4dd7-a4ef-216adec42c3c\",\n        \"contactId\": \"7b358acc-be03-4e46-8d1e-2a982656b9ab\",\n        \"contact\": \"John Doe\",\n        \"tagId\": \"d2dc3158-e1fe-42de-b34e-77e4788e98ae\",\n        \"tag\": \"Normal\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"id\": \"7f729f49-b894-41ad-86b6-6906007fa50d\",\n        \"contactId\": \"d2bb384d-706e-46bf-8200-dba15d935fb2\",\n        \"contact\": \"Juan Diaz\",\n        \"tagId\": \"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3\",\n        \"tag\": \"Basic\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"id\": \"86a96112-9656-4ad0-b7dc-c2d68c84fc0d\",\n        \"contactId\": \"b155b6f7-ecb6-4b62-8ccb-5a2a941f8df9\",\n        \"contact\": \"Jean Dux\",\n        \"tagId\": \"1153a0c8-3a47-4d32-b106-82e05a57a96b\",\n        \"tag\": \"Semi-Spetial\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"id\": \"49ed1992-87b0-470d-8eeb-c843bebfdb20\",\n        \"contactId\": \"b155b6f7-ecb6-4b62-8ccb-5a2a941f8df9\",\n        \"contact\": \"Jean Dux\",\n        \"tagId\": \"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3\",\n        \"tag\": \"Basic\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "GetById",
@@ -194,35 +645,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GetById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/contacttags/2af381dc-818e-4faf-abaf-14dacd164831",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacttags",
+										"2af381dc-818e-4faf-abaf-14dacd164831"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:17 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:28.1913316Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2af381dc-818e-4faf-abaf-14dacd164831\",\n    \"contactId\": \"7b358acc-be03-4e46-8d1e-2a982656b9ab\",\n    \"contact\": \"John Doe\",\n    \"tagId\": \"474d8a1e-a11c-4131-b4ef-3f2da6f94a71\",\n    \"tag\": \"Spetial\",\n    \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n    \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update",
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A\",\r\n  \"contactId\": \"FD59A15D-CCD8-4ADE-A420-41FF2E29640A\",\r\n  \"tagId\": \"ED6CC526-3CF3-40B2-B146-ECAD0D6CAC66\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:5184/api/contacttags",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5184",
-							"path": [
-								"api",
-								"contacttags"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5184/api/contacttags/a33bdc5b-ef29-44ad-a963-b5a00f033483",
+							"raw": "http://localhost:5184/api/contacttags/0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -231,11 +727,153 @@
 							"path": [
 								"api",
 								"contacttags",
-								"a33bdc5b-ef29-44ad-a963-b5a00f033483"
+								"0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A\",\r\n  \"contactId\": \"FD59A15D-CCD8-4ADE-A420-41FF2E29640A\",\r\n  \"tagId\": \"ED6CC526-3CF3-40B2-B146-ECAD0D6CAC66\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/contacttags/0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacttags",
+										"0C4F4D53-984B-4A44-A2BF-5172A1E7AD6A"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:28:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:28:52.4115479Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact-Tag updated successfully.\",\n    \"data\": {\n        \"updated\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5184/api/contacttags/3E4B0ADF-01F6-4F16-A6E1-E8ABDE9E1D37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5184",
+							"path": [
+								"api",
+								"contacttags",
+								"3E4B0ADF-01F6-4F16-A6E1-E8ABDE9E1D37"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/contacttags/3E4B0ADF-01F6-4F16-A6E1-E8ABDE9E1D37",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"contacttags",
+										"3E4B0ADF-01F6-4F16-A6E1-E8ABDE9E1D37"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:29:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:29:16.7053795Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Contact-Tag deleted successfully.\",\n    \"data\": {\n        \"deleted\": true\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -249,7 +887,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Basic\",\r\n  \"color\": \"Blue\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Basic\",\r\n  \"color\": \"Blue\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -269,7 +907,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Basicxx\",\r\n  \"color\": \"Bluexx\",\r\n  \"userId\": \"C6D210A9-D891-4627-818E-271DCF39B5E6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/tags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"tags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 12:57:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T12:57:55.4877146Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Tag Created Successfully.\",\n    \"data\": {\n        \"tagId\": \"7635cbf7-89ea-4705-9fa0-a580269aa147\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "GettAll",
@@ -289,7 +991,62 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GettAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/tags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"tags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:37.0217393Z"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Basic\",\n        \"color\": \"Blue\",\n        \"id\": \"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"name\": \"Spetial\",\n        \"color\": \"Gold\",\n        \"id\": \"474d8a1e-a11c-4131-b4ef-3f2da6f94a71\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"name\": \"Normal\",\n        \"color\": \"Green\",\n        \"id\": \"d2dc3158-e1fe-42de-b34e-77e4788e98ae\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"name\": \"Semi-Spetial\",\n        \"color\": \"Silver\",\n        \"id\": \"1153a0c8-3a47-4d32-b106-82e05a57a96b\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    },\n    {\n        \"name\": \"Basic\",\n        \"color\": \"Blue\",\n        \"id\": \"51313fc9-f0df-496a-a75c-e2a568008957\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "GetById",
@@ -297,7 +1054,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/tags/9fe20d39-26da-4994-b6b3-a626f09251d2",
+							"raw": "http://localhost:5184/api/tags/a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -306,11 +1063,67 @@
 							"path": [
 								"api",
 								"tags",
-								"9fe20d39-26da-4994-b6b3-a626f09251d2"
+								"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GetById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/tags/a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"tags",
+										"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:43.3655419Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Basic\",\n    \"color\": \"Blue\",\n    \"id\": \"a7d7ca07-d9f2-4dc7-80b2-0f9d98675bd3\",\n    \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n    \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update",
@@ -319,7 +1132,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"644514ac-5e40-4b97-9aed-b882ab55784c\",\r\n    \"name\": \"Semi-Spetialxxx\",\r\n    \"color\": \"Silverxxx\"\r\n}",
+							"raw": "{\r\n  \"id\": \"b07f0e9d-1135-4fc5-a04c-29e12f0e47b8\",\r\n  \"name\": \"Intermediate\",\r\n  \"color\": \"Red\",\r\n  \"userId\": \"c6d210a9-d891-4627-818e-271dcf39b5e6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,7 +1140,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5184/api/tags/644514ac-5e40-4b97-9aed-b882ab55784c",
+							"raw": "http://localhost:5184/api/tags/b07f0e9d-1135-4fc5-a04c-29e12f0e47b8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -336,11 +1149,76 @@
 							"path": [
 								"api",
 								"tags",
-								"644514ac-5e40-4b97-9aed-b882ab55784c"
+								"b07f0e9d-1135-4fc5-a04c-29e12f0e47b8"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"b07f0e9d-1135-4fc5-a04c-29e12f0e47b8\",\r\n  \"name\": \"Intermediate\",\r\n  \"color\": \"Red\",\r\n  \"userId\": \"c6d210a9-d891-4627-818e-271dcf39b5e6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/tags/b07f0e9d-1135-4fc5-a04c-29e12f0e47b8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"tags",
+										"b07f0e9d-1135-4fc5-a04c-29e12f0e47b8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:01:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:01:19.5606994Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Tags Updated Successfully.\",\n    \"data\": {\n        \"updated\": true\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete",
@@ -348,7 +1226,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/tags/644514ac-5e40-4b97-9aed-b882ab55784c",
+							"raw": "http://localhost:5184/api/tags/7635cbf7-89ea-4705-9fa0-a580269aa147",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -357,11 +1235,67 @@
 							"path": [
 								"api",
 								"tags",
-								"644514ac-5e40-4b97-9aed-b882ab55784c"
+								"7635cbf7-89ea-4705-9fa0-a580269aa147"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/tags/7635cbf7-89ea-4705-9fa0-a580269aa147",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"tags",
+										"7635cbf7-89ea-4705-9fa0-a580269aa147"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:02:43 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:02:54.3541858Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"Tag Deleted Successfully.\",\n    \"data\": {\n        \"deleted\": true\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -395,7 +1329,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Veronica Eztevez\",\r\n  \"userName\": \"VEXA2481\",\r\n  \"password\": \"string123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 May 2025 12:33:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-22T12:33:36.8022651Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"User created successfully.\",\n    \"data\": {\n        \"urlHelper\": null,\n        \"actionName\": \"GetById\",\n        \"controllerName\": null,\n        \"routeValues\": {\n            \"id\": \"58dbe7d9-9fd8-4f92-8cc8-0b1a81f57119\"\n        },\n        \"value\": \"58dbe7d9-9fd8-4f92-8cc8-0b1a81f57119\",\n        \"formatters\": [],\n        \"contentTypes\": [],\n        \"declaredType\": null,\n        \"statusCode\": 201\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "GettAll",
@@ -415,7 +1413,62 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GettAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:50.5273601Z"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07\",\n        \"name\": \"Esteban Raya\",\n        \"userName\": \"REXA2577\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"0001-01-01T00:00:00\"\n    },\n    {\n        \"id\": \"9a156d12-0c52-4f03-91ff-ab20796df87d\",\n        \"name\": \"Sebastían Leguizamón\",\n        \"userName\": \"LSXA2581\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"0001-01-01T00:00:00\"\n    },\n    {\n        \"id\": \"5e7c02f8-8e9f-4ad7-bba9-d41d047ac0eb\",\n        \"name\": \"Walter Millán\",\n        \"userName\": \"MWXA2582\",\n        \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n        \"updatedAt\": \"0001-01-01T00:00:00\"\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "GetById",
@@ -423,7 +1476,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/users/e9287fbe-c8c0-49b6-a9d4-859e2e4caf07",
+							"raw": "http://localhost:5184/api/users/58dbe7d9-9fd8-4f92-8cc8-0b1a81f57119",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -432,11 +1485,67 @@
 							"path": [
 								"api",
 								"users",
-								"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07"
+								"58dbe7d9-9fd8-4f92-8cc8-0b1a81f57119"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "GetById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/users/e9287fbe-c8c0-49b6-a9d4-859e2e4caf07",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users",
+										"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 May 2025 21:44:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-21T21:44:56.5849014Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07\",\n    \"name\": \"Esteban Raya\",\n    \"userName\": \"REXA2577\",\n    \"createdAt\": \"2025-05-11T23:07:34.8003195\",\n    \"updatedAt\": \"2025-05-11T23:07:34.8003195\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update",
@@ -445,7 +1554,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07\",\r\n  \"name\": \"Esteban Raya\",\r\n  \"userName\": \"REXA2577\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
+							"raw": "{\r\n  \"id\": \"9a156d12-0c52-4f03-91ff-ab20796df87d\",\r\n  \"name\": \"Sebastían Leguizamón\",\r\n  \"userName\": \"LSXA2581\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -453,7 +1562,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5184/api/users/e9287fbe-c8c0-49b6-a9d4-859e2e4caf07",
+							"raw": "http://localhost:5184/api/users/9a156d12-0c52-4f03-91ff-ab20796df87d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -462,11 +1571,76 @@
 							"path": [
 								"api",
 								"users",
-								"e9287fbe-c8c0-49b6-a9d4-859e2e4caf07"
+								"9a156d12-0c52-4f03-91ff-ab20796df87d"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"ca2962ad-bc68-445d-9ad6-0ae598a51bf8\",\r\n  \"name\": \"Esteban Raya\",\r\n  \"userName\": \"REXA2577\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/users/ca2962ad-bc68-445d-9ad6-0ae598a51bf8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users",
+										"ca2962ad-bc68-445d-9ad6-0ae598a51bf8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 May 2025 12:34:59 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-22T12:35:09.5074722Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"User updated successfully.\",\n    \"data\": true\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete",
@@ -474,7 +1648,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5184/api/users/958aa7ac-3fe2-40ee-8de4-9e3e83de77d2",
+							"raw": "http://localhost:5184/api/users/7bafffd8-16dd-483a-8951-61286e36e71e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -483,11 +1657,67 @@
 							"path": [
 								"api",
 								"users",
-								"958aa7ac-3fe2-40ee-8de4-9e3e83de77d2"
+								"7bafffd8-16dd-483a-8951-61286e36e71e"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5184/api/users/7bafffd8-16dd-483a-8951-61286e36e71e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users",
+										"7bafffd8-16dd-483a-8951-61286e36e71e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 May 2025 12:35:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-22T12:35:46.0010483Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"User deleted successfully.\",\n    \"data\": true\n}"
+						}
+					]
 				},
 				{
 					"name": "Login - Failure",
@@ -517,7 +1747,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login - Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 May 2025 12:35:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-22T12:35:55.5347689Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"authenticated\": false,\n    \"message\": \"Authentication error: User with username 'STRING' not found.\",\n    \"data\": null\n}"
+						}
+					]
 				},
 				{
 					"name": "Login - Successfully",
@@ -547,7 +1842,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login - Successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"MWXA2582\",\r\n  \"password\": \"T€lef0n0\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 May 2025 12:35:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "8"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-22T12:35:55.5347689Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 0,\n    \"authenticated\": true,\n    \"message\": \"User authenticated successfully.\",\n    \"data\": {\n        \"id\": \"c6d210a9-d891-4627-818e-271dcf39b5e6\",\n        \"name\": \"Walter M. Millán\",\n        \"userName\": \"MWXA2582\"\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -583,7 +1943,82 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Test",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5184/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5184",
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 13:29:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "10s"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "2025-05-23T13:29:44.0260169Z"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Healthy\",\n    \"checks\": [\n        {\n            \"name\": \"sql\",\n            \"status\": \"Healthy\",\n            \"error\": null,\n            \"duration\": \"15,1653ms\"\n        }\n    ]\n}"
+						}
+					]
 				}
 			]
 		}

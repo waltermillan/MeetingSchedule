@@ -9,5 +9,7 @@ namespace Core.Entities
         public string? Name { get; set; }
         [Column("color")]
         public string? Color { get; set; }
+        [Column("user_id")]
+        public Guid? UserId { get; set; }
     }
 }

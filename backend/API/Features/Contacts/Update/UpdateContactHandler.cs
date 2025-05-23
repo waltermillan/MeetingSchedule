@@ -24,6 +24,7 @@ namespace API.Features.Contacts.Update
             contact.Phone = request.Phone;
             contact.Address = request.Address;
             contact.UpdatedAt = DateTime.UtcNow;
+            contact.UserId = request.UserId;
 
             _unitOfWork.Contacts.Update(contact);
             await _unitOfWork.SaveAsync(cancellationToken);

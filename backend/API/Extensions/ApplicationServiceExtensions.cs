@@ -9,8 +9,11 @@ using Infrastructure.Repositories;
 using Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
+using Serilog.Filters;
+using Serilog;
 using System.Reflection;
 using System.Text.Json;
+using Core.Constants;
 
 namespace API.Extensions;
 public static class ApplicationServiceExtensions
@@ -24,13 +27,13 @@ public static class ApplicationServiceExtensions
             var methods = configuration.GetSection("CorsSettings:Methods").Get<string[]>();
 
             if (string.IsNullOrWhiteSpace(policyName))
-                throw new InvalidOperationException("CORS policy name is not configured (CorsSettings:PolicyName).");
+                throw new InvalidOperationException(ConfigurationMessages.CORSPolicyNameNotConfigured);
 
             if (origins == null || origins.Length == 0)
-                throw new InvalidOperationException("CORS origins are not configured (CorsSettings:Origins).");
+                throw new InvalidOperationException(ConfigurationMessages.CORSOriginsNotConfigured);
 
             if (methods == null || methods.Length == 0)
-                throw new InvalidOperationException("CORS methods are not configured (CorsSettings:Methods).");
+                throw new InvalidOperationException(ConfigurationMessages.CORSMethodsNotConfigured);
 
             options.AddPolicy(policyName, builder =>
                 builder.WithOrigins(origins)
@@ -63,19 +66,19 @@ public static class ApplicationServiceExtensions
         var realIpHeader = configuration["RateLimit:RealIpHeader"];
 
         if (string.IsNullOrWhiteSpace(endpoint))
-            throw new InvalidOperationException("Rate limit endpoint is not configured (RateLimit:Endpoint).");
+            throw new InvalidOperationException(ConfigurationMessages.RateLimitEndpointNotConfigured);
 
         if (string.IsNullOrWhiteSpace(period))
-            throw new InvalidOperationException("Rate limit period is not configured (RateLimit:Period).");
+            throw new InvalidOperationException(ConfigurationMessages.RateLimitPeriodNotConfigured);
 
         if (!double.TryParse(limitStr, out var limit))
-            throw new InvalidOperationException("Rate limit 'Limit' is not a valid number (RateLimit:Limit).");
+            throw new InvalidOperationException(ConfigurationMessages.RateLimitLimitNotValidNumber);
 
         if (!int.TryParse(httpStatusCodeStr, out var httpStatusCode))
-            throw new InvalidOperationException("Rate limit 'HttpStatusCode' is not a valid integer (RateLimit:HttpStatusCode).");
+            throw new InvalidOperationException(ConfigurationMessages.RateLimitHttpStatusCodeNotValidInteger);
 
         if (string.IsNullOrWhiteSpace(realIpHeader))
-            throw new InvalidOperationException("Rate limit 'RealIpHeader' is not configured (RateLimit:RealIpHeader).");
+            throw new InvalidOperationException(ConfigurationMessages.RateLimitRealIpHeaderNotConfigured);
 
         services.AddMemoryCache();
         services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
@@ -108,7 +111,7 @@ public static class ApplicationServiceExtensions
         var connectionString = configuration.GetConnectionString("MeetingScheduleAppConnection");
 
         if (string.IsNullOrWhiteSpace(connectionString))
-            throw new InvalidOperationException("Connection string 'MeetingScheduleAppConnection' is missing or empty.");
+            throw new InvalidOperationException(ConfigurationMessages.ConnectionStringMissingOrEmpty);
 
         services.AddHealthChecks()
             .AddSqlServer(
@@ -151,9 +154,45 @@ public static class ApplicationServiceExtensions
             var connectionString = configuration.GetConnectionString("MeetingScheduleAppConnection");
 
             if (string.IsNullOrEmpty(connectionString))
-                throw new InvalidOperationException("Connection string 'MeetingScheduleAppConnection' not found.");
+                throw new InvalidOperationException(ConfigurationMessages.ConnectionStringNotFound);
 
             options.UseSqlServer(connectionString);
         });
+    }
+
+    public static void ConfigureLogging(this WebApplicationBuilder builder)
+    {
+        var appName = builder.Configuration["SystemName:Name"] ?? "MeetingSchedule";
+
+        builder.Logging.ClearProviders();
+        builder.Logging.AddFilter("Microsoft", LogLevel.Warning);
+        builder.Logging.AddFilter("System", LogLevel.Warning);
+
+        // Serilog Configuration
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.File($"logs/{appName}-.log", rollingInterval: RollingInterval.Day)
+            .Filter.ByExcluding(Matching.FromSource("Microsoft.EntityFrameworkCore"))
+            .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore"))
+            .CreateLogger();
+
+        builder.Logging.AddSerilog();
+    }
+
+    public static async Task ConfigureMigrationsAsync(this IServiceProvider services)
+    {
+        using var scope = services.CreateScope();
+        var scopedServices = scope.ServiceProvider;
+        var loggerFactory = scopedServices.GetRequiredService<ILoggerFactory>();
+
+        try
+        {
+            var context = scopedServices.GetRequiredService<Context>();
+            await context.Database.MigrateAsync();
+        }
+        catch (Exception ex)
+        {
+            var logger = loggerFactory.CreateLogger("MigrationLogger");
+            logger.LogError(ex, ConfigurationMessages.ErrorDuringMigration);
+        }
     }
 }
